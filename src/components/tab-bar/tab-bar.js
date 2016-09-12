@@ -2,9 +2,7 @@
  * Created by ZhiyuanSun on 16/9/11.
  */
 import React, {Component} from 'react';
-import TabBarItem from './js/tab-bar-item';
 import './styles/tab-bar.less';
-import './styles/tab-bar-item.less';
 
 export default class TabBar extends Component{
   constructor(props){
@@ -15,13 +13,50 @@ export default class TabBar extends Component{
   }
 
   render(){
-    let nums = this.props.items.length;
-    let items = this.props.items.map((item, index) => {
-      return <TabBarItem key={item.id} itemNums={nums} content={item} isActive={this.state.currentIndex === index} ></TabBarItem>;
-    });
     return (
       <div className="tab-bar-flex-container">
-        {items}
+        <div className="tab-bar-flex-item">
+          {
+            this.state.currentIndex === 0 ? (
+            <div>
+              <i className="iconfont tab-bar-item-active">&#xe607;</i>
+              <div className="tab-bar-item-name tab-bar-item-active">主页</div>
+            </div>
+            ) : (
+            <div>
+              <i className="iconfont tab-bar-item-inactive">&#xe606;</i>
+              <div className="tab-bar-item-name tab-bar-item-inactive">主页</div>
+            </div>)
+          }
+        </div>
+        <div className="tab-bar-flex-item">
+          {
+            this.state.currentIndex === 0 ? (
+              <div>
+                <i className="iconfont tab-bar-item-active">&#xe602;</i>
+                <div className="tab-bar-item-name tab-bar-item-active">内容</div>
+              </div>
+            ) : (
+              <div>
+                <i className="iconfont tab-bar-item-inactive">&#xe603;</i>
+                <div className="tab-bar-item-name tab-bar-item-inactive">内容</div>
+              </div>)
+          }
+        </div>
+        <div className="tab-bar-flex-item">
+          {
+            this.state.currentIndex === 0 ? (
+              <div>
+                <i className="iconfont tab-bar-item-active">&#xe605;</i>
+                <div className="tab-bar-item-name tab-bar-item-active">个人</div>
+              </div>
+            ) : (
+              <div>
+                <i className="iconfont tab-bar-item-inactive">&#xe604;</i>
+                <div className="tab-bar-item-name tab-bar-item-inactive">个人</div>
+              </div>)
+          }
+        </div>
       </div>
     );
   }
