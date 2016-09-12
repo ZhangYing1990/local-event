@@ -14,7 +14,7 @@ export default class TabBar extends Component{
 
   render(){
     let items = this.props.items.map((item, index) => {
-      return <TabBarItem content={item} isActive={this.state.currentIndex === index} ></TabBarItem>;
+      return <TabBarItem key={item.id} content={item} isActive={this.state.currentIndex === index} ></TabBarItem>;
     });
     return (
       <div>

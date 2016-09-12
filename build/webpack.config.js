@@ -11,13 +11,16 @@ var pickFiles = utils.pickFiles;
 // 项目根路径
 var ROOT_PATH = fullPath('../');
 // 项目源码路径
-var SRC_PATH = ROOT_PATH + '/src';
+// var SRC_PATH = ROOT_PATH + '/src';
+var SRC_PATH = fullPath('../src');
+
 // 产出路径
 var DIST_PATH = ROOT_PATH + '/dist';
 
 // node_modules
-var NODE_MODULES_PATH = ROOT_PATH + '/node_modules';
-
+// var NODE_MODULES_PATH = ROOT_PATH + '/node_modules';
+var NODE_MODULES_PATH = fullPath('../node_modules');
+                      
 var __DEV__ = process.env.NODE_ENV !== 'production';
 
 var args = process.argv;
@@ -153,7 +156,7 @@ config.postcss = function() {
 
 // 图片路径处理，压缩
 config.module.loaders.push({
-  test: /\.(?:jpg|gif|png|svg)$/,
+  test: /\.(?:eot|woff|ttf|jpg|gif|png|svg)$/,
   loaders: [
     'url?limit=8000&name=img/[hash].[ext]',
     'image-webpack'
