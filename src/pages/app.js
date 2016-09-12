@@ -34,33 +34,35 @@ export default class App extends Component {
         icon: {
           class: 'iconfont',
           code: "&#xe64c;"
-        }
+        },
+        text: "主页"
       },
       {
         id: 1,
         icon: {
           class: 'iconfont',
           code: '&#xe6ec;'
-        }
+        },
+        text: "内容"
       },
       {
         id: 2,
         icon: {
           class: 'iconfont',
           code: '&#xe678;'
-        }
+        },
+        text: "个人"
       }
     ];
 
     return (
       <div id="app">
-        <div className="header">
-          <Link to="home">page1</Link>
-          <Link to="content">page2</Link>
-          <Link to="page3">page3</Link>
+        <div className="top-fixed">
+          {this.props.children}
         </div>
-        {this.props.children}
-        <TabBar items={tabBarItems}></TabBar>
+        <footer className="bottom-fixed">
+          <TabBar items={tabBarItems}></TabBar>
+        </footer>
       </div>
     );
   }

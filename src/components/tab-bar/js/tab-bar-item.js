@@ -12,10 +12,11 @@ export default class TabBarItem extends Component{
     let tabBarItemStyle = {
       width: 100/this.props.itemNums + '%'
     };
-
+    
     return (
-      <div style={tabBarItemStyle}>
-        <i className={this.props.content.icon.class}>&#xe64c;</i>
+      <div style={tabBarItemStyle} className="tab-bar-flex-item">
+        <i className={this.props.content.icon.class + (this.props.isActive ? " tab-bar-item-active" : "")}>&#xe64c;</i>
+        <div className="tab-bar-item-name">{this.props.content.text}</div>
       </div>
     );
   }

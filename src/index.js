@@ -23,6 +23,7 @@ import {
 } from 'react-router';
 import reducers from './js/reducers/index';
 import routes from './js/routes';
+import './styles/main.less';
 
 const store = createStore(reducers, {}, applyMiddleware(thunk));
 
