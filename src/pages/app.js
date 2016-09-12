@@ -12,6 +12,20 @@ import TabBar from '../components/tab-bar/tab-bar';
 
 import './app.less';
 
+
+class Test extends Component{
+  render(){
+    let iconCode = '&#xe64c';
+
+    return (
+      <div>
+        <i className="iconfont">&#xe64c;</i>
+        <i className="iconfont">{iconCode}</i>
+      </div>
+    );
+  }
+}
+
 export default class App extends Component {
   render() {
     let tabBarItems = [
@@ -19,7 +33,7 @@ export default class App extends Component {
         id: 0,
         icon: {
           class: 'iconfont',
-          code: '&#xe64c;'
+          code: "&#xe64c;"
         }
       },
       {

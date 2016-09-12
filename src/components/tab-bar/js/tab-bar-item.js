@@ -9,9 +9,13 @@ export default class TabBarItem extends Component{
   }
 
   render(){
+    let tabBarItemStyle = {
+      width: 100/this.props.itemNums + '%'
+    };
+
     return (
-      <div>
-        <i className={this.props.content.icon.class}>{this.props.content.icon.code}</i>
+      <div style={tabBarItemStyle}>
+        <i className={this.props.content.icon.class}>&#xe64c;</i>
       </div>
     );
   }

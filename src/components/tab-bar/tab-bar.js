@@ -3,6 +3,7 @@
  */
 import React, {Component} from 'react';
 import TabBarItem from './js/tab-bar-item';
+import './styles/tab-bar.less';
 
 export default class TabBar extends Component{
   constructor(props){
@@ -13,11 +14,12 @@ export default class TabBar extends Component{
   }
 
   render(){
+    let nums = this.props.items.length;
     let items = this.props.items.map((item, index) => {
-      return <TabBarItem key={item.id} content={item} isActive={this.state.currentIndex === index} ></TabBarItem>;
+      return <TabBarItem className="tab-bar-flex-item" key={item.id} itemNums={nums} content={item} isActive={this.state.currentIndex === index} ></TabBarItem>;
     });
     return (
-      <div>
+      <div className="tab-bar-flex-container">
         {items}
       </div>
     );
