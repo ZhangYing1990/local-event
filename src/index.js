@@ -22,13 +22,17 @@ import {
 	Link
 } from 'react-router';
 import reducers from './js/reducers/index';
-import routes from './js/routes';
-import './styles/main.less';
+// import routes from './js/routes';
+// import './styles/main.less';
 
 const store = createStore(reducers, {}, applyMiddleware(thunk));
 
+// render((
+// 	<Provider store={store}>
+// 		<Router history={browserHistory} routes={routes}/>
+// 	</Provider>
+// ), document.getElementById('root'));
+
 render((
-	<Provider store={store}>
-    	<Router history={browserHistory} routes={routes}/>
-  	</Provider>
+	<div>Hello</div>
 ), document.getElementById('root'));

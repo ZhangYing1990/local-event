@@ -9,16 +9,16 @@ import {
 import App from '../pages/app';
 
 // pages
-import Page1 from '../pages/page1/index';
-import Page2 from '../pages/page2/index';
+import Home from '../pages/home/index';
+import Content from '../pages/content/index';
 import Page3 from '../pages/page3/index';
 
 
 export default (
 	<Route path="/" component={App}>
-		<IndexRoute component={Page1}/>
-		<Route path="page1" component={Page1}></Route>
-		<Route path="page2" component={Page2}></Route>
+		<IndexRoute component={Home}/>
+		<Route path="home" component={Home}></Route>
+		<Route path="content" component={Content}></Route>
 		<Route path="page3" component={Page3}></Route>
 	</Route>
 );

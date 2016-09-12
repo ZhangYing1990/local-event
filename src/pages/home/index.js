@@ -3,7 +3,7 @@ import React, {
 } from 'react';
 import './index.scss';
 
-export default class Page1 extends Component {
+export default class Home extends Component {
 	render() {
 		return (
 			<div className="page1"> Page11111 </div>
