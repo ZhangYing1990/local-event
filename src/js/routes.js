@@ -11,7 +11,7 @@ import App from '../pages/app';
 // pages
 import Home from '../pages/home/index';
 import Content from '../pages/content/index';
-import Page3 from '../pages/page3/index';
+import Mine from '../pages/mine/index';
 
 
 export default (
@@ -19,6 +19,6 @@ export default (
 		<IndexRoute component={Home}/>
 		<Route path="home" component={Home}></Route>
 		<Route path="content" component={Content}></Route>
-		<Route path="page3" component={Page3}></Route>
+		<Route path="mine" component={Mine}></Route>
 	</Route>
 );

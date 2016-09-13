@@ -8,13 +8,18 @@ import './styles/tab-bar.less';
 export default class TabBar extends Component{
   constructor(props){
     super(props);
+
+  }
+
+  componentWillMount(){
   }
 
   render(){
     let {currentIndex, switchTab} = this.props;
+
     return (
       <div className="tab-bar-flex-container">
-        <Link to="/" className="tab-bar-flex-item" onClick={switchTab(0)}>
+        <Link to="/" className="tab-bar-flex-item" onClick={switchTab.bind(this, 0)}>
           {
             currentIndex === 0 ? (
             <div>
@@ -28,7 +33,7 @@ export default class TabBar extends Component{
             </div>)
           }
         </Link>
-        <Link to="/content" className="tab-bar-flex-item" onClick={switchTab(1)}>
+        <Link to="/content" className="tab-bar-flex-item" onClick={switchTab.bind(this, 1)}>
           {
             currentIndex === 1 ? (
               <div>
@@ -42,7 +47,7 @@ export default class TabBar extends Component{
               </div>)
           }
         </Link>
-        <Link to="/mine" className="tab-bar-flex-item" onClick={switchTab(2)}>
+        <Link to="/mine" className="tab-bar-flex-item" onClick={switchTab.bind(this, 2)}>
           {
             currentIndex === 2 ? (
               <div>

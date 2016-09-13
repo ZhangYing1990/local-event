@@ -40,3 +40,18 @@ export default class App extends Component {
     );
   }
 };
+
+// export default class App extends Component {
+//   render() {
+//     return (
+//       <div id="app">
+//         <div className="top-fixed">
+//           {this.props.children}
+//         </div>
+//         <footer className="bottom-fixed">
+//           <TabBarContainer></TabBarContainer>
+//         </footer>
+//       </div>
+//     );
+//   }
+// };
