@@ -4,6 +4,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import './styles/tab-bar.less';
+import {TabBarHelper} from '../../js/helpers/tab-bar-helper';
 
 export default class TabBar extends Component{
   constructor(props){
@@ -14,14 +15,16 @@ export default class TabBar extends Component{
   componentWillMount(){
   }
 
+
+
   render(){
-    let {currentIndex, switchTab} = this.props;
+    const {currentTabId, switchTab} = this.props;
 
     return (
       <div className="tab-bar-flex-container">
-        <Link to="/" className="tab-bar-flex-item" onClick={switchTab.bind(this, 0)}>
+        <Link to={TabBarHelper.URL_PATH.HOME} className="tab-bar-flex-item" onClick={switchTab.bind(this, TabBarHelper.TAB_BAR_ID.HOME)}>
           {
-            currentIndex === 0 ? (
+            currentTabId === TabBarHelper.TAB_BAR_ID.HOME ? (
             <div>
               <i className="iconfont tab-bar-item-active">&#xe607;</i>
               <div className="tab-bar-item-name tab-bar-item-active">主页</div>
@@ -33,9 +36,9 @@ export default class TabBar extends Component{
             </div>)
           }
         </Link>
-        <Link to="/content" className="tab-bar-flex-item" onClick={switchTab.bind(this, 1)}>
+        <Link to={TabBarHelper.URL_PATH.CONTENT} className="tab-bar-flex-item" onClick={switchTab.bind(this, TabBarHelper.TAB_BAR_ID.CONTENT)}>
           {
-            currentIndex === 1 ? (
+            currentTabId === TabBarHelper.TAB_BAR_ID.CONTENT ? (
               <div>
                 <i className="iconfont tab-bar-item-active">&#xe602;</i>
                 <div className="tab-bar-item-name tab-bar-item-active">内容</div>
@@ -47,9 +50,9 @@ export default class TabBar extends Component{
               </div>)
           }
         </Link>
-        <Link to="/mine" className="tab-bar-flex-item" onClick={switchTab.bind(this, 2)}>
+        <Link to={TabBarHelper.URL_PATH.MINE} className="tab-bar-flex-item" onClick={switchTab.bind(this, TabBarHelper.TAB_BAR_ID.HOME)}>
           {
-            currentIndex === 2 ? (
+            currentTabId === TabBarHelper.TAB_BAR_ID.MINE ? (
               <div>
                 <i className="iconfont tab-bar-item-active">&#xe605;</i>
                 <div className="tab-bar-item-name tab-bar-item-active">个人</div>

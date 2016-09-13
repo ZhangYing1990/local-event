@@ -6,9 +6,9 @@ import {bindActionCreators} from 'redux';
 import TabBar from '../../components/tab-bar/tab-bar';
 import {switchTab} from '../actions/navigator';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownprops) => {
   return {
-    currentIndex: state.currentIndex
+    currentTabId: state.currentTabId
   };
 };
 

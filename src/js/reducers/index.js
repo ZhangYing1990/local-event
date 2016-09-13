@@ -2,7 +2,7 @@ import {combineReducers} from 'redux';
 import NavigatorReducer from './navigator';
 
 const rootReducer = combineReducers({
-  currentIndex: NavigatorReducer
+  currentTab: NavigatorReducer
 });
 
 export default rootReducer;
