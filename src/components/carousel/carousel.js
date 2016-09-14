@@ -20,7 +20,7 @@ export default class Carousel extends Component {
   // 向前向后多少
   turn(n) {
     console.log();
-    var _n = this.state.nowLocal + n;
+    let _n = this.state.nowLocal + n;
     if(_n < 0) {
       _n = _n + this.props.items.length;
     }
@@ -84,6 +84,6 @@ Carousel.defaultProps = {
   autoplay: true,
   dots: true,
   arrows: true,
-  items: [],
+  items: []
 };
 Carousel.autoPlayFlag = null;
