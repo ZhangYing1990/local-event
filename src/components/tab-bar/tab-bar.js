@@ -15,8 +15,6 @@ export default class TabBar extends Component{
   componentWillMount(){
   }
 
-
-
   render(){
     const {currentTabId, switchTab} = this.props;
 
@@ -50,7 +48,7 @@ export default class TabBar extends Component{
               </div>)
           }
         </Link>
-        <Link to={TabBarHelper.URL_PATH.MINE} className="tab-bar-flex-item" onClick={switchTab.bind(this, TabBarHelper.TAB_BAR_ID.HOME)}>
+        <Link to={TabBarHelper.URL_PATH.MINE} className="tab-bar-flex-item" onClick={switchTab.bind(this, TabBarHelper.TAB_BAR_ID.MINE)}>
           {
             currentTabId === TabBarHelper.TAB_BAR_ID.MINE ? (
               <div>

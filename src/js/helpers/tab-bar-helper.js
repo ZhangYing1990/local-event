@@ -1,46 +1,32 @@
 /**
  * Created by ZhiyuanSun on 16/9/13.
  */
-// export URL_PATH = {
-//   HOME: '/home',
-//   CONTENT: '/content',
-//   MINE: '/mine',
-//   INDEX: '/'
-// };
-//
-// const tabBarMap = new Map();
-// tabBarMap.set(URL_PATH.HOME,0);
-// tabBarMap.set(URL_PATH.INDEX,0);
-// tabBarMap.set(URL_PATH.CONTENT,1);
-// tabBarMap.set(URL_PATH.MINE,2);
-//
-// export function getTabBarIndexByUrlPath(urlPath) {
-//   return tabBarMap.get(urlPath);
-// };
+const URL_PATH = {
+  HOME: '/home',
+  CONTENT: '/content',
+  MINE: '/mine',
+  INDEX: '/'
+};
 
-export class TabBarHelper{
+const TAB_BAR_ID= {
+  HOME: 0,
+  CONTENT: 1,
+  MINE: 2
+};
 
-  static URL_PATH = {
-    HOME: '/home',
-    CONTENT: '/content',
-    MINE: '/mine',
-    INDEX: '/'
-  };
+const tabBarMap =  new Map([
+  [URL_PATH.HOME, TAB_BAR_ID.HOME],
+  [URL_PATH.INDEX, TAB_BAR_ID.HOME],
+  [URL_PATH.CONTENT, TAB_BAR_ID.CONTENT],
+  [URL_PATH.MINE, TAB_BAR_ID.MINE]
+]);
 
-  static TAB_BAR_ID = {
-    HOME: 0,
-    CONTENT: 1,
-    INDEX: 2
-  };
+const getTabIdByUrlPath = (urlPath) =>{
+  return tabBarMap.get(urlPath);
+};
 
-  static tabBarMap = new Map([
-    [this.URL_PATH.HOME, this.TAB_BAR_ID.HOME],
-    [this.URL_PATH.INDEX, this.TAB_BAR_ID.HOME],
-    [this.URL_PATH.CONTENT, this.TAB_BAR_ID.CONTENT],
-    [this.URL_PATH.MINE, this.TAB_BAR_ID.INDEX]
-  ]);
-
-  getTabIdByUrlPath(urlPath){
-    return this.tabBarMap.get(urlPath);
-  }
-}
+export const TabBarHelper = {
+  URL_PATH,
+  TAB_BAR_ID,
+  getTabIdByUrlPath
+};

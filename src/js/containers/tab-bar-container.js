@@ -6,7 +6,7 @@ import {bindActionCreators} from 'redux';
 import TabBar from '../../components/tab-bar/tab-bar';
 import {switchTab} from '../actions/navigator';
 
-const mapStateToProps = (state, ownprops) => {
+const mapStateToProps = (state) => {
   return {
     currentTabId: state.currentTabId
   };
