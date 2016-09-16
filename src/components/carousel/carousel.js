@@ -146,6 +146,10 @@ export default class Carousel extends Component {
     this.goPlay();
   }
 
+  componentWillUnmount(){
+    clearInterval(this.autoPlayFlag);
+  }
+
   render() {
 
     const {disabled} = this.props;

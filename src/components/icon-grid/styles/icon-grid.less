@@ -1,0 +1,30 @@
+.icon-grid{
+  display: block;
+  .icon-grid-container{
+    display: -webkit-box!important;
+    display: -webkit-flex!important;
+    display: -ms-flexbox!important;
+    display: flex!important;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+
+    li.icon-grid-item{
+      display: block;
+      margin-bottom: 5px;
+      margin-top: 5px;
+      a{
+        text-decoration: none;
+        display: block;
+        text-align: center;
+        color: #051B28;
+        img.icon-grid-item-img{
+          height: 3.6rem;
+          width: 3.6rem;
+        }
+      }
+    }
+  }
+}
