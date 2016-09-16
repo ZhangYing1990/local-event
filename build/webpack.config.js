@@ -156,7 +156,7 @@ config.postcss = function() {
 
 // 图片路径处理，压缩
 config.module.loaders.push({
-  test: /\.(?:eot|woff|ttf|jpg|gif|png|svg)$/,
+  test: /\.(?:eot|woff|ttf|jpg|gif|png|svg|webp)$/,
   loaders: [
     'url?limit=8000&name=img/[hash].[ext]',
     'image-webpack'

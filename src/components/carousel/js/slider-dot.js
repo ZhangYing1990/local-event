@@ -15,12 +15,12 @@ export default class SliderDots extends Component {
 
   render() {
     let dotNodes = [];
-    let { count, nowLocal } = this.props;
+    let { count, currentItemIndex } = this.props;
     for(let i = 0; i < count; i++) {
       dotNodes[i] = (
         <span
           key={'dot' + i}
-          className={"slider-dot" + (i === this.props.nowLocal?" slider-dot-selected":"")}
+          className={"slider-dot" + (i === currentItemIndex?" slider-dot-selected":"")}
           onClick={this.handleDotClick.bind(this, i)}>
         </span>
       );
