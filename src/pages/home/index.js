@@ -4,6 +4,7 @@ import React, {
 
 import Carousel from '../../components/carousel/carousel';
 import IconGrid from '../../components/icon-grid/icon-grid';
+import Nearby from '../../components/nearby/nearby';
 import './index.less';
 
 export default class Home extends Component {
@@ -99,6 +100,7 @@ export default class Home extends Component {
 				<div className="icon-grid-div">
 					<IconGrid items={this.state.iconGridItems}></IconGrid>
 				</div>
+				<Nearby></Nearby>
 			</div>
 		);
 	}
