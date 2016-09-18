@@ -102,7 +102,9 @@ export default class Home extends Component {
 				<div className="icon-grid-div">
 					<IconGrid items={this.state.iconGridItems}></IconGrid>
 				</div>
+				<div className="bord"></div>
 				<NearbyContainer></NearbyContainer>
+				<div className="bord"></div>
 			</div>
 		);
 	}

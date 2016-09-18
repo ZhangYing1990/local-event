@@ -1,3 +1,5 @@
+@import "../../../styles/globals";
+
 .nearby-container{
   display: -webkit-box !important;
   display: -webkit-flex !important;
@@ -10,15 +12,15 @@
   justify-content: space-between;
 
   .nearby-location{
-    width: 10rem;
+    width: 100px;
+    margin: 5px 0;
     text-align: center;
     img.nearby-title{
-      width: 8rem;
+      width: 80px;
     }
     div.nearby-location-name{
-      text-align: left;
-      margin-left: 1.2rem;
-      font-size: 1.5rem;
+      text-align: center;
+      font-size: 15px;
       i.iconfont{
         color: grey;
       }
@@ -26,10 +28,10 @@
   }
 
   .nearby-event{
-    border-left: 1px solid rgba(0,0,0,0.2);
+    border-left: 1px solid @cutting-line-color;
     flex-grow: 1;
-    margin: 5px 0 5px 0;
-    padding-left: 5px;
+    margin: 8px 0 5px 0;
+    padding-left: 10px;
     display: -webkit-box !important;
     display: -webkit-flex !important;
     display: -ms-flexbox !important;
@@ -43,14 +45,14 @@
       flex-grow: 1;
       line-height: 1.4;
       p.title{
-        font-size: 1.5rem;
+        font-size: 18px;
       }
-      .description{
-
+      span.description{
+        font-size: 14px;
       }
     }
     .nearby-event-arrow{
-      width: 2rem;
+      width: 20px;
       justify-content: center;
       display: -webkit-box !important;
       display: -webkit-flex !important;
@@ -63,7 +65,8 @@
       align-items: center;
 
       i.iconfont{
-        font-size: 2rem;
+        font-size: 20px;
+        color: grey;
       }
     }
 

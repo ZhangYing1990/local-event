@@ -36,7 +36,14 @@ app.use(cookieParser());
 
 app.get('/', function(req, res, next){
   "use strict";
+  console.log('index');
   res.render('index.html');
+});
+
+app.get('/detail', function (req, res, next) {
+  "use strict";
+  console.log('detail');
+  res.render('event-detail.html');
 });
 
 module.exports = app;

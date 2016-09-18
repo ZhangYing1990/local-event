@@ -67,6 +67,7 @@ var config = {
   context: SRC_PATH,
   entry: {
     app: ['./index.js'],
+    detail: ['./event-detail.js'],
     lib: [
       'react', 'react-dom', 'react-router',
       'redux', 'react-redux', 'redux-thunk'
@@ -191,6 +192,22 @@ config.plugins.push(
     filename: 'index.html',
     chunks: ['app', 'lib'],
     template: SRC_PATH + '/index.html',
+    minify: __DEV__ ? false : {
+      collapseWhitespace: true,
+      collapseInlineTagWhitespace: true,
+      removeRedundantAttributes: true,
+      removeEmptyAttributes: true,
+      removeScriptTypeAttributes: true,
+      removeStyleLinkTypeAttributes: true,
+      removeComments: true
+    }
+  })
+);
+config.plugins.push(
+  new HtmlwebpackPlugin({
+    filename: 'event-detail.html',
+    chunks: ['detail', 'lib'],
+    template: SRC_PATH + '/event-detail.html',
     minify: __DEV__ ? false : {
       collapseWhitespace: true,
       collapseInlineTagWhitespace: true,
