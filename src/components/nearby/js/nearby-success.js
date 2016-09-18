@@ -2,6 +2,7 @@
  * Created by ZhiyuanSun on 16/9/16.
  */
 import React, {Component} from 'react';
+import Carousel from '../../carousel/carousel';
 
 export default class NearbySuccess extends Component{
 
@@ -16,14 +17,14 @@ export default class NearbySuccess extends Component{
       </div>
     );
 
+    let item = this.props.events[0];
+
     if(this.props.getNearbyEventSuccess){
       return this.props.events.length > 0 ?
         (
           <div className="nearby-event">
-            <div className="nearby-event-content">
-              <p className="title">{this.props.events[0].title}</p>
-              <span className="description">{this.props.events[0].description}</span>
-            </div>
+            <Carousel items={this.props.events} arrows={false} verticalDir={true} textCarousel={true} animationDuration={1}></Carousel>
+
             <div className="nearby-event-arrow">
               <i className="iconfont">&#xe609;</i>
             </div>
@@ -51,3 +52,4 @@ export default class NearbySuccess extends Component{
     );
   }
 }
+

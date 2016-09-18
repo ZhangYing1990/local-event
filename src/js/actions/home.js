@@ -99,10 +99,20 @@ const getNearyEvents = (point, dispatch) => {
     // Simulate call API
     setTimeout(() => {
       if(Math.round(Math.random() * 10)%2 ===0){
-        let events = [{
-          title: "演唱会",
-          description: "Zhiyuan的演出会"
-        }];
+        let events = [
+          {
+            title: "演唱会",
+            description: "Zhiyuan的演出会"
+          },
+          {
+            title: "戏曲",
+            description: "Junmei的戏曲"
+          },
+          {
+            title: "电影",
+            description: "Wanzhou的电影"
+          }
+        ];
         dispatch(receiveEventSuccess(events));
         resolve(events);
       }

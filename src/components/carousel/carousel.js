@@ -8,6 +8,7 @@ import './styles/carousel.scss';
 import SliderItem from './js/slider-item';
 import SliderDots from './js/slider-dot';
 import SliderArrows from './js/slider-arrow';
+import SliderTextItem from './js/slider-text-item';
 
 export default class Carousel extends Component {
 
@@ -128,7 +129,9 @@ export default class Carousel extends Component {
     dots: true,
     arrows: true,
     items: [],
-    swipeSensitivity: 0.1875
+    swipeSensitivity: 0.1875,
+    verticalDir: false,         // true: 垂直方向; false: 水平方向
+    textCarousel: false         // true: 文本轮播; false: 图片轮播
   };
 
   static autoPlayFlag = null;
@@ -152,7 +155,7 @@ export default class Carousel extends Component {
 
   render() {
 
-    const {disabled} = this.props;
+    const {disabled, verticalDir} = this.props;
     const touchEvents = disabled ? {} : {
       onTouchStart: this.handleTouchStart,
       onTouchMove: this.handleTouchMove,
@@ -162,15 +165,35 @@ export default class Carousel extends Component {
     const count = this.props.items.length;
 
     let itemNodes = this.props.items.map((item, idx) => {
-      return <SliderItem item={item} count={count} key={'item' + idx} />;
+      return this.props.textCarousel ?
+        <SliderTextItem item={item} count={count} verticalDir={verticalDir} key={'item' + idx} /> :
+        <SliderItem item={item} count={count} verticalDir={verticalDir} key={'item' + idx} />;
     });
 
     let arrowsNode = <SliderArrows turn={this.turn.bind(this)}/>;
 
     let dotsNode = <SliderDots turn={this.turn.bind(this)} count={count} currentItemIndex={this.state.currentItemIndex} />;
 
-    let currentLeft = -100 * (this.state.currentItemIndex + this.state.currentOffset) + "%";
+    let currentOffset = -100 * (this.state.currentItemIndex + this.state.currentOffset) + "%";
     let transitionDuration = this.state.isSwiping ? 0 + "s" : this.props.animationDuration + "s";
+
+    let ulStyle = null;
+    if(this.props.verticalDir){ //垂直
+      ulStyle = {
+        top: currentOffset,
+        transitionDuration: transitionDuration,
+        transitionTimingFunction: 'linear',
+        height: this.props.items.length * 100 + "%"
+      }
+    }
+    else{ //水平
+      ulStyle = {
+        left: currentOffset,
+        transitionDuration: transitionDuration,
+        transitionTimingFunction: 'linear',
+        width: this.props.items.length * 100 + "%"
+      }
+    }
 
     return (
       <div
@@ -180,12 +203,7 @@ export default class Carousel extends Component {
         <ul
             {...touchEvents}
             ref={(ulDom) => {this._ulDom = ulDom}}
-            style={{
-              left: currentLeft,
-              transitionDuration: transitionDuration,
-              transitionTimingFunction: 'linear',
-              width: this.props.items.length * 100 + "%"
-            }}>
+            style={ulStyle}>
           {itemNodes}
         </ul>
         {this.props.arrows ? arrowsNode : null}

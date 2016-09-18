@@ -1,9 +1,9 @@
 /**
- * Created by ZhiyuanSun on 16/8/18.
+ * Created by ZhiyuanSun on 16/9/18.
  */
 import React, { Component} from 'react';
 
-export default class SliderItem extends Component {
+export default class SliderTextItem extends Component {
   constructor(props) {
     super(props);
   }
@@ -14,9 +14,10 @@ export default class SliderItem extends Component {
 
     let liStyle = this.props.verticalDir ? {height: percentage} : {width: percentage};
     return (
-      <li className="slider-item" style={liStyle}>
-        <img src={item.src} alt={item.alt}/>
-      </li>
+      <div className="nearby-event-content" style={liStyle}>
+        <p className="title">{item.title}</p>
+        <span className="description">{item.description}</span>
+      </div>
     );
   }
 }
