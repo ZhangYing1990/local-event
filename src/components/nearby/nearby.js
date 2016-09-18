@@ -21,10 +21,10 @@ export default class Nearby extends Component{
     const {getLocationSuccess} = this.props;
     
     return (
-      <div className="nearby-container">
+      <div>
         {
           getLocationSuccess ?
-            <NearbySuccess locationInfo={this.props.locationInfo}></NearbySuccess> :
+            <NearbySuccess {...this.props}></NearbySuccess> :
             ""
         }
       </div>

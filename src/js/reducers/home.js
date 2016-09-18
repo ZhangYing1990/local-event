@@ -1,4 +1,51 @@
 /**
  * Created by ZhiyuanSun on 16/9/16.
  */
+import {combineReducers} from 'redux';
 import {NEARBY} from '../actions/home';
+
+const initState = {
+  isPending: true,
+  getLocationSuccess: false,
+  locationInfo: "",
+  getNearbyEventSuccess: true,
+  events: []
+};
+
+const locationReducer = (state = initState, action) => {
+  switch (action.type){
+    case NEARBY.REQUEST_LOCATION:
+      return Object.assign({}, state, {
+        isPending: true
+      });
+    case NEARBY.FETCH_LOCATION_SUCCESS:
+      return Object.assign({}, state, {
+        isPending: false,
+        getLocationSuccess: true,
+        locationInfo: action.locationInfo
+      });
+    case NEARBY.FETCH_LOCATION_FAILURE:
+      return Object.assign({}, state, {
+        isPending: false,
+        getLocationSuccess: false,
+        locationInfo: action.locationInfo
+      });
+    case NEARBY.FETCH_EVENT_SUCCESS:
+      return Object.assign({}, state, {
+        getNearbyEventSuccess: true,
+        events: action.events
+      });
+    case NEARBY.FETCH_EVENT_FAILURE:
+      return Object.assign({}, state, {
+        getNearbyEventSuccess: false
+      });
+    default:
+      return state;
+  }
+};
+
+const homeReducer = combineReducers({
+  nearby: locationReducer
+});
+
+export default homeReducer;
