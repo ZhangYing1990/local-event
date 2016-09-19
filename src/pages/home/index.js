@@ -2,14 +2,15 @@ import React, {
 	Component
 } from 'react';
 
+import {connect} from 'react-redux';
+import store from '../../js/createStore';
 import Carousel from '../../components/carousel/carousel';
 import IconGrid from '../../components/icon-grid/icon-grid';
-import Nearby from '../../components/nearby/nearby';
 
 import NearbyContainer from '../../js/containers/nearby-container';
 import './index.less';
 
-export default class Home extends Component {
+class Home extends Component {
 
 	getCarouselItems(){
 		let carouselItems = [
@@ -86,26 +87,33 @@ export default class Home extends Component {
 	// ************************************
 	constructor(props){
 		super(props);
-		this.state = {
-			carouselItems: this.getCarouselItems(),
-			iconGridItems: this.getIconGridItems()
-		}
-
+		this.carouselItems = this.getCarouselItems(),
+		this.iconGridItems = this.getIconGridItems()
 	}
 
 
 	render() {
+		const display = this.props ? this.props.home.nearby.display : true;
 
 		return (
 			<div className="home-page">
-				<Carousel items={this.state.carouselItems} arrows={false}></Carousel>
+				<Carousel items={this.carouselItems} arrows={false}></Carousel>
 				<div className="icon-grid-div">
-					<IconGrid items={this.state.iconGridItems}></IconGrid>
+					<IconGrid items={this.iconGridItems}></IconGrid>
 				</div>
 				<div className="bord"></div>
 				<NearbyContainer></NearbyContainer>
-				<div className="bord"></div>
+				{display ? <div className="bord"></div> : null}
 			</div>
 		);
 	}
 }
+
+const mapStateToProps = (state) =>{
+	"use strict";
+	return {
+		home: state.home
+	}
+};
+
+export default connect(mapStateToProps)(Home);

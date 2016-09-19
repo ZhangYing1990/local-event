@@ -1,5 +1,7 @@
 @import "../../../styles/globals";
 
+@nearby-event-height: 45px;
+
 .nearby-container{
   display: -webkit-box !important;
   display: -webkit-flex !important;
@@ -12,7 +14,7 @@
   justify-content: space-between;
 
   .nearby-location{
-    width: 100px;
+    width: 110px;
     margin: 5px 0;
     text-align: center;
     img.nearby-title{
@@ -28,10 +30,10 @@
   }
 
   .nearby-event{
-    height: 57px;
+    height: @nearby-event-height;
     border-left: 1px solid @cutting-line-color;
     flex-grow: 1;
-    margin: 8px 0 5px 0;
+    margin: 5px 0 5px 0;
     padding-left: 10px;
     display: -webkit-box !important;
     display: -webkit-flex !important;
@@ -42,6 +44,11 @@
     flex-wrap: nowrap;
     flex-direction: row;
     justify-content: space-between;
+
+    a.nearby-event-content{
+      text-decoration: none;
+      color: black;
+    }
     .nearby-event-content{
       flex-grow: 1;
       line-height: 1.4;
@@ -53,7 +60,7 @@
       }
     }
     .nearby-event-arrow{
-      width: 20px;
+      width: 40px;
       justify-content: center;
       display: -webkit-box !important;
       display: -webkit-flex !important;
@@ -72,4 +79,13 @@
     }
 
   }
+}
+
+.no-event{
+  line-height: @nearby-event-height;
+  height: @nearby-event-height;
+  justify-content: center !important;
+  font-size: 20px;
+  color: grey;
+  text-align: center;
 }

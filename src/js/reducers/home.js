@@ -6,10 +6,11 @@ import {NEARBY} from '../actions/home';
 
 const initState = {
   isPending: true,
-  getLocationSuccess: false,
+  getLocationSuccess: true,
   locationInfo: "",
   getNearbyEventSuccess: true,
-  events: []
+  events: [],
+  display: true
 };
 
 const locationReducer = (state = initState, action) => {
@@ -18,15 +19,17 @@ const locationReducer = (state = initState, action) => {
       return Object.assign({}, state, {
         isPending: true
       });
+    case NEARBY.FINISH_REQUEST_LOCATION:
+      return Object.assign({}, state, {
+        isPending: false
+      });
     case NEARBY.FETCH_LOCATION_SUCCESS:
       return Object.assign({}, state, {
-        isPending: false,
         getLocationSuccess: true,
         locationInfo: action.locationInfo
       });
     case NEARBY.FETCH_LOCATION_FAILURE:
       return Object.assign({}, state, {
-        isPending: false,
         getLocationSuccess: false,
         locationInfo: action.locationInfo
       });
@@ -38,6 +41,10 @@ const locationReducer = (state = initState, action) => {
     case NEARBY.FETCH_EVENT_FAILURE:
       return Object.assign({}, state, {
         getNearbyEventSuccess: false
+      });
+    case NEARBY.HIDE_NEARBY:
+      return Object.assign({}, state, {
+        display: false
       });
     default:
       return state;

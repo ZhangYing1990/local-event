@@ -182,6 +182,7 @@ export default class Carousel extends Component {
       ulStyle = {
         top: currentOffset,
         transitionDuration: transitionDuration,
+        transitionProperty: 'top',
         transitionTimingFunction: 'linear',
         height: this.props.items.length * 100 + "%"
       }
@@ -190,6 +191,7 @@ export default class Carousel extends Component {
       ulStyle = {
         left: currentOffset,
         transitionDuration: transitionDuration,
+        transitionProperty: 'left',
         transitionTimingFunction: 'linear',
         width: this.props.items.length * 100 + "%"
       }

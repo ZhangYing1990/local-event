@@ -14,10 +14,10 @@ export default class SliderTextItem extends Component {
 
     let liStyle = this.props.verticalDir ? {height: percentage} : {width: percentage};
     return (
-      <div className="nearby-event-content" style={liStyle}>
+      <a className="nearby-event-content" style={liStyle} href={item.url}>
         <p className="title">{item.title}</p>
         <span className="description">{item.description}</span>
-      </div>
+      </a>
     );
   }
 }

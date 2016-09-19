@@ -6,10 +6,12 @@ import {axios} from 'axios';
 // Define action type string
 export const NEARBY = {
   REQUEST_LOCATION: 'REQUEST_LOCATION',
+  FINISH_REQUEST_LOCATION: 'FINISH_REQUEST_LOCATION',
   FETCH_LOCATION_SUCCESS: 'FETCH_LOCATION_SUCCESS',
   FETCH_LOCATION_FAILURE: 'FETCH_LOCATION_FAILURE',
   FETCH_EVENT_SUCCESS: 'FETCH_EVENT_SUCCESS',
-  FETCH_EVENT_FAILURE: 'FETCH_EVENT_FAILURE'
+  FETCH_EVENT_FAILURE: 'FETCH_EVENT_FAILURE',
+  HIDE_NEARBY: 'HIDE_NEARBY'
 };
 
 const DISPLAY_MESSAGES = {
@@ -21,6 +23,13 @@ const requestLocation = () =>{
   "use strict";
   return {
     type: NEARBY.REQUEST_LOCATION
+  }
+};
+
+const finishRequestLocation = () =>{
+  "use strict";
+  return{
+    type: NEARBY.FINISH_REQUEST_LOCATION
   }
 };
 
@@ -54,6 +63,15 @@ const receiveEventFailure = () =>{
     type: NEARBY.FETCH_EVENT_SUCCESS
   }
 };
+
+export const hideNearby = () =>{
+  "use strict";
+  return {
+    type: NEARBY.HIDE_NEARBY
+  }
+};
+
+
 
 
 const getLocationCoord = (dispatch) =>{
@@ -102,15 +120,18 @@ const getNearyEvents = (point, dispatch) => {
         let events = [
           {
             title: "演唱会",
-            description: "Zhiyuan的演出会"
+            description: "Zhiyuan的演出会",
+            url: "event-detail.html"
           },
           {
             title: "戏曲",
-            description: "Junmei的戏曲"
+            description: "Junmei的戏曲",
+            url: "event-detail.html"
           },
           {
             title: "电影",
-            description: "Wanzhou的电影"
+            description: "Wanzhou的电影",
+            url: "event-detail.html"
           }
         ];
         dispatch(receiveEventSuccess(events));
@@ -137,8 +158,11 @@ export function getLocation() {
       .then((point) => {
         return Promise.all([getLocationName(point, dispatch), getNearyEvents(point, dispatch)])
       })
+      .then(()=>{
+        dispatch(finishRequestLocation());
+      })
       .catch((err) => {
-
+        dispatch(finishRequestLocation());
       });
 
   }

@@ -9,11 +9,8 @@ import {
 import {
 	Provider
 } from 'react-redux';
-import {
-	createStore,
-	applyMiddleware
-} from 'redux';
-import thunk from 'redux-thunk';
+
+
 import {
 	Router,
 	Route,
@@ -21,11 +18,11 @@ import {
 	browserHistory,
 	Link
 } from 'react-router';
-import reducers from './js/reducers/index';
+
+import store from './js/createStore';
 import routes from './js/routes';
 import './styles/main.less';
 
-const store = createStore(reducers, {}, applyMiddleware(thunk));
 
 render((
 	<Provider store={store}>

@@ -8,6 +8,12 @@ import './styles/nearby.less';
 export default class Nearby extends Component{
   constructor(props){
     super(props);
+
+    this.nearbyFailureNode = (
+      <div className="no-event">
+        获取附近活动失败
+      </div>
+    );
   }
 
   componentWillMount(){
@@ -17,15 +23,32 @@ export default class Nearby extends Component{
     }
   }
 
+  getFinishLoadingNode(getLocationSuccess){
+    if(getLocationSuccess){
+      return <NearbySuccess {...this.props}></NearbySuccess>;
+    }
+    else {
+      const {hideNearby} = this.props;
+      setTimeout(()=>{
+        hideNearby();
+      }, 3000);
+      return this.nearbyFailureNode;
+    }
+  }
+
   render(){
-    const {getLocationSuccess} = this.props;
-    
+    let {getLocationSuccess, isPending, display} = this.props;
+    let finishLoadingNode = this.getFinishLoadingNode(getLocationSuccess);
+
+    let loadingNode = (
+      <div className="no-event">
+        Loading
+      </div>
+    );
     return (
       <div>
         {
-          getLocationSuccess ?
-            <NearbySuccess {...this.props}></NearbySuccess> :
-            ""
+          display ? (isPending ? loadingNode : finishLoadingNode) : null
         }
       </div>
     );

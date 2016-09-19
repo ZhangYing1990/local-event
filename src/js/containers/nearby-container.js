@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import Nearby from '../../components/nearby/nearby';
 
-import {getLocation} from '../actions/home';
+import {getLocation, hideNearby} from '../actions/home';
 
 const mapStateToProps = (state) => {
   return {
@@ -13,12 +13,13 @@ const mapStateToProps = (state) => {
     locationInfo: state.home.nearby.locationInfo,
     isPending: state.home.nearby.isPending,
     getNearbyEventSuccess: state.home.nearby.getNearbyEventSuccess,
-    events: state.home.nearby.events
+    events: state.home.nearby.events,
+    display: state.home.nearby.display
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({getLocation}, dispatch)
+  return bindActionCreators({getLocation, hideNearby}, dispatch)
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Nearby);

@@ -12,7 +12,7 @@ export default class NearbySuccess extends Component{
 
   createNearbyEventNode(){
     let noNearbyEventNode = (
-      <div className="nearby-event">
+      <div className="nearby-event no-event">
         附近没有活动
       </div>
     );
@@ -23,8 +23,7 @@ export default class NearbySuccess extends Component{
       return this.props.events.length > 0 ?
         (
           <div className="nearby-event">
-            <Carousel items={this.props.events} arrows={false} verticalDir={true} textCarousel={true} animationDuration={1}></Carousel>
-
+            <Carousel items={this.props.events} dots={false} arrows={false} verticalDir={true} textCarousel={true} animationDuration={0.4}></Carousel>
             <div className="nearby-event-arrow">
               <i className="iconfont">&#xe609;</i>
             </div>
