@@ -8,7 +8,9 @@ const addressSchema = new Schema({
   city: String,
   district: String,
   street: String,
-  streetNumber: Number
+  streetNumber: Number,
+  lng: Number,
+  lat: Number
 });
 
 module.exports = addressSchema;

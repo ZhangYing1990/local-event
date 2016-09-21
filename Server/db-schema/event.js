@@ -25,3 +25,5 @@ const eventSchema = new Schema({
   detail: String,
   comments: [ObjectId]
 });
+
+module.exports = eventSchema;
