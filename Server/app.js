@@ -1,14 +1,18 @@
 /**
  * Created by ZhiyuanSun on 16/9/20.
  */
-var Express = require('express');
 
-let app = Express();
+'use strict';
+const express = require('express');
+const logger = require('morgan');
 
-app.get('/', function (req, res){
+let app = express();
+
+// loggers
+app.use(logger('dev'));
+
+app.get('/', (req, res) => {
   res.send(`hello world!`);
 });
 
-app.listen(4321, function(){
-  console.log('server running http://localhost:4321');
-});
+module.exports = app;

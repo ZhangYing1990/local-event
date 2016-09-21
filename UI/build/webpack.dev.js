@@ -18,9 +18,9 @@ var config = require('./webpack.config');
 var DeployPlugin = require('./deploy.plugin');
 var utils = require('./utils');
 
-var PORT = 80;
-var HOST = utils.getIP();
-// var HOST = 'localhost';
+var PORT = 8088;
+// var HOST = utils.getIP();
+var HOST = 'localhost';
 var args = process.argv;
 var hot = args.indexOf('--hot') > -1;
 var deploy = args.indexOf('--deploy') > -1;

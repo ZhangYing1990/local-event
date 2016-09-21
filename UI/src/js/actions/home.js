@@ -103,6 +103,7 @@ const getLocationName = (point, dispatch) => {
         reject(DISPLAY_MESSAGES.GET_LOCATION_FAILURE);
       }
       else{
+        console.log(rs.addressComponents);
         let locationName = rs.addressComponents.street + rs.addressComponents.streetNumber;
         dispatch(receiveLocationSuccess(locationName));
         resolve(locationName);
