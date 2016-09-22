@@ -44,3 +44,5 @@ class Address{
     return address;
   }
 }
+
+module.exports = Address;

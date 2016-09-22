@@ -4,6 +4,7 @@
 const fs = require('fs');
 const EventManager = require('../../management/event-manager');
 const EVENT_TYPE = require('../../constants/event-type');
+const Address = require('../../model/address');
 const axios = require('axios');
 let eventManager = new EventManager();
 
@@ -49,13 +50,13 @@ const convertEvents = (events) =>{
       abstract: event.desc,
       time: new Date(event.showinfo),
       types: event.tag,
-      bigPost: event.img,
-      smallPost: "",
+      bigPost: "",
+      smallPost: event.img,
       price: {
         beforeDiscount: [event.price, event.price2],
         afterDiscount: []
       },
-      address: null,
+      address: new Address(80,50,"江苏省", "南京市", "江宁区", "天元西路", 2),
       phone: "18795865835",
       detail: "",
       comments: null
@@ -189,6 +190,34 @@ const fetchXiqu = ()=>{
   })
 };
 
+const fetchBigPost = (eventId, type) => {
+  let url = `http://api.wenkor.com/wenkor/servapi/photolist?id=${eventId}&type=${type}`;
+  return axios.get(url).then((result)=>{
+    return result.data.data.head;
+  })
+};
+
+const fetchLocation = (eventId, type) => {
+  let url = `http://api.wenkor.com/wenkor/servapi/content_info?id=${eventId}&type=${type}`;
+
+  return axios.get(url).then((result)=>{
+    let data = result.data.data;
+    return {
+      lat: data.lat,
+      lng: data.lon
+    };
+  })
+};
+
+
+// fetchLocation("071b3f467f2f4d8f848be879476efc76",1).then((res)=>{
+//   "use strict";
+//   console.log(res);
+// });
+
+let globalEvents = null;
+let globalNewEvents = null;
+
 Promise.all([
   fetchYanchanghui(),
   fetchYinyuehui(),
@@ -204,10 +233,37 @@ Promise.all([
   }
   return result;
 }).then((events)=>{
-  let newEvents = convertEvents(events);
+  globalEvents = events;
+
+  globalNewEvents = convertEvents(globalEvents);
+  let promiseArray = [];
+  for(let event of globalEvents){
+    promiseArray.push(fetchBigPost(event.id, event.type));
+  }
+  return Promise.all(promiseArray);
+}).then((res)=>{
+  "use strict";
+  for(let i = 0;i<res.length;i++){
+    globalNewEvents[i].bigPost = res[i];
+  }
+  return globalNewEvents;
+}).then((newEvents)=>{
+  let promiseArray = [];
+  for(let event of globalEvents){
+    promiseArray.push(fetchLocation(event.id, event.type));
+  }
+  return Promise.all(promiseArray);
+}).then((res)=>{
+  "use strict";
+  for(let i = 0;i<res.length;i++){
+    globalNewEvents[i].address.lat = res[i].lat;
+    globalNewEvents[i].address.lng = res[i].lng;
+  }
+  return globalNewEvents;
+}).then((newEvents)=>{
   return eventManager.createEvents(newEvents);
 }).then((...doc) =>{
-  // console.log(doc);
+  console.log('import data successfully');
 }).catch((err)=>{
   console.log(err)
 });
