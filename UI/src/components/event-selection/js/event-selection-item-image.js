@@ -12,7 +12,9 @@ export default class EventSelectionItemImage extends Component{
     // let el = this.getDOMNode();
     let el = ReactDOM.findDOMNode(this);
     let rect = el.getBoundingClientRect();
-    if(rect.top < 0){
+    console.log(rect.top);
+    console.log(this.props.viewport.height);
+    if(rect.top < this.props.viewport.height + 100){
       this.setState({
         showImage: true
       })
@@ -27,24 +29,22 @@ export default class EventSelectionItemImage extends Component{
   }
 
   static defaultProps = {
-    loadingImage: require('../img/carousel-item1.jpg')
+    loadingImage: require('../img/loading.png')
   };
 
   render(){
-    let lazyImg = this.state.showImage ? this.props.src : this.props.loadingImage;
+    let lazyImg = this.state.showImage ? this.props.img : this.props.loadingImage;
     let img = this.props.lazyLoading ? lazyImg : this.props.img;
     return (
-      <img src={img}/>
+      <img src={img} height={this.props.imgHeight} width={this.props.imgWidth}/>
     );
   }
 
   componentDidMount(){
-    console.log('did update selection-item-image');
     this.updateShowStatus();
   }
 
   componentDidUpdate(){
-    console.log('did update selection-item-image');
     this.updateShowStatus();
   }
 }

@@ -2,6 +2,7 @@
  * Created by ZhiyuanSun on 16/9/16.
  */
 import {axios} from 'axios';
+import EventSelectionManager from '../managers/event-selection';
 
 // Define action type string
 export const NEARBY = {
@@ -16,6 +17,12 @@ export const NEARBY = {
 
 const DISPLAY_MESSAGES = {
   GET_LOCATION_FAILURE: "获取位置失败"
+};
+
+export const EVENT_SELECTION ={
+  REQUEST_EVENT_SELECTION_ITEMS: "REQUEST_EVENT_SELECTION_ITEMS",
+  RECEIVE_EVENT_SELECTION_ITEMS_SUCCESS: "RECEIVE_EVENT_SELECTION_ITEMS_SUCCESS",
+  RECEIVE_EVENT_SELECTION_ITEMS_FAILURE: "RECEIVE_EVENT_SELECTION_ITEMS_FAILURE"
 };
 
 
@@ -71,6 +78,29 @@ export const hideNearby = () =>{
   }
 };
 
+
+export const requestEventSelectionItems = ()=>{
+  "use strict";
+  return {
+    type: EVENT_SELECTION.REQUEST_EVENT_SELECTION_ITEMS
+  }
+};
+
+export const receiveEventSelectionItemsSuccess = (items)=>{
+  "use strict";
+  return {
+    type: EVENT_SELECTION,
+    items
+  }
+};
+
+export const receiveEventSelectionItemsFailure = (err)=>{
+  "use strict";
+  return {
+    type: EVENT_SELECTION,
+    err
+  }
+};
 
 
 
@@ -167,4 +197,21 @@ export function getLocation() {
       });
 
   }
+}
+
+export function getEventSelectionItems(start, count) {
+  return (dispatch) =>{
+    "use strict";
+    dispatch(requestEventSelectionItems());
+
+    const eventSelectionManager = new EventSelectionManager();
+    eventSelectionManager.getEventSelectionItems(start, count)
+      .then((items)=>{
+        dispatch(receiveEventSelectionItemsSuccess(items));
+      })
+      .catch((err) =>{
+        dispatch(receiveEventSelectionItemsFailure(err));
+      });
+  }
+
 }

@@ -4,6 +4,8 @@
 import {combineReducers} from 'redux';
 import {NEARBY} from '../actions/home';
 
+import {eventSelectionReducer} from './event-selection';
+
 const initState = {
   isPending: true,
   getLocationSuccess: true,
@@ -52,7 +54,8 @@ const locationReducer = (state = initState, action) => {
 };
 
 const homeReducer = combineReducers({
-  nearby: locationReducer
+  nearby: locationReducer,
+  eventSelection: eventSelectionReducer
 });
 
 export default homeReducer;

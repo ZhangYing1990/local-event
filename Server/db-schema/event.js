@@ -23,7 +23,8 @@ const eventSchema = new Schema({
   address: addressSchema,
   phone: String,
   detail: String,
-  comments: [ObjectId]
+  comments: [ObjectId],
+  isSelection: Boolean
 });
 
 module.exports = eventSchema;

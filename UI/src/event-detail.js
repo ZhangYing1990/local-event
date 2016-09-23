@@ -70,6 +70,6 @@ let items= [
 
 render((
   <Provider store={store}>
-    <EventSelection lazyLoading={true} items={items}></EventSelection>
+    <EventSelection lazyLoading={true} items={items} imgWidth="100%"></EventSelection>
   </Provider>
 ), document.getElementById('root'));

@@ -4,6 +4,8 @@
 import React, {Component} from 'react';
 import EventSelectionItem from './js/event-selection-item';
 
+import './styles/index.less';
+
 export default class EventSelection extends Component{
 
   static defaultProps = {
@@ -45,10 +47,10 @@ export default class EventSelection extends Component{
 
   render(){
     let liNodes = this.props.items.map((item, index) =>{
-      return <EventSelectionItem key={"selection-item-"+index} item={item} lazyLoading={this.props.lazyLoading} viewport={this.state.viewport}></EventSelectionItem>
+      return <EventSelectionItem key={"selection-item-"+index} {...this.props} item={item} viewport={this.state.viewport}></EventSelectionItem>
     });
     return (
-      <ul>
+      <ul className="event-selection">
         {liNodes}
       </ul>
     );

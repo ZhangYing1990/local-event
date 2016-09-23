@@ -15,6 +15,21 @@ class EventManager{
   createEvents(events){
     return this.eventContext.create(events);
   }
+
+  getEventSelection(start,count){
+    return new Promise((resolve, reject)=>{
+      this.eventContext.find({isSelection: true})
+        .sort('_id').skip(start).limit(count).select('_id bigPost abstract')
+        .exec((err, items)=>{
+          if(err){
+            reject(err);
+          }
+          else {
+            resolve(items);
+          }
+        });
+    });
+  }
 }
 
 module.exports = EventManager;

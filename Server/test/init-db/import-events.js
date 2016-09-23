@@ -59,7 +59,8 @@ const convertEvents = (events) =>{
       address: new Address(80,50,"江苏省", "南京市", "江宁区", "天元西路", 2),
       phone: "18795865835",
       detail: "",
-      comments: null
+      comments: null,
+      isSelection: Math.round(Math.random() * 10) % 2 === 0
     });
   }
   return newEvents;

@@ -18,15 +18,12 @@ export default class EventSelectionItem extends Component{
   }
 
   componentWillMount(){
-    console.log('component will mount');
   }
 
   componentWillUpdate(){
-    console.log('component will update');
   }
 
   componentDidMount(){
-    console.log('component did mount');
   }
 
 
@@ -36,7 +33,7 @@ export default class EventSelectionItem extends Component{
     return (
       <li>
         <a href={item.url}>
-          <EventSelectionItemImage img={item.img} lazyLoading={lazyLoading}></EventSelectionItemImage>
+          <EventSelectionItemImage {...this.props} img={item.img}></EventSelectionItemImage>
           <p>{item.description}</p>
         </a>
       </li>
