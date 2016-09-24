@@ -25,10 +25,21 @@ class EventManager{
             reject(err);
           }
           else {
-            resolve(items);
+            const results = items.map((item)=>{
+              return {
+                img: item.bigPost,
+                description: item.abstract,
+                id: item._id
+              }
+            });
+            resolve(results);
           }
         });
     });
+  }
+
+  getEventDetailUrl(){
+
   }
 }
 

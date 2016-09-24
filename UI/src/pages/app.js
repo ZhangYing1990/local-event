@@ -30,9 +30,9 @@ export default class App extends Component {
   render() {
     return (
       <div id="app">
-        <div className="top-fixed">
+        <context id="content" className="top-fixed">
           {this.props.children}
-        </div>
+        </context>
         <footer className="bottom-fixed">
           <TabBarContainer></TabBarContainer>
         </footer>
@@ -55,3 +55,4 @@ export default class App extends Component {
 //     );
 //   }
 // };
+

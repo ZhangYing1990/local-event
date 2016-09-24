@@ -5,7 +5,7 @@ import axios from 'axios';
 
 export default class EventSelectionManager{
   constructor(){
-    this.baseUrl = "http://localhost:4321/v1/event-selection-items"
+    this.baseUrl = "http://192.168.2.103:4321/v1/event-selection"
   }
 
   getEventSelectionItems(start, count){
@@ -13,7 +13,13 @@ export default class EventSelectionManager{
     let url = this.baseUrl.concat(queryString);
     return axios.get(url)
       .then((res) => {
-        return res.data;
+        return res.data.map((item)=>{
+          return {
+            img: item.img,
+            description: item.description,
+            url: `/event-detail.html?id=${item.id}`
+          }
+        });
       });
   }
 

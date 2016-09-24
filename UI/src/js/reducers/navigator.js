@@ -12,7 +12,6 @@ const getInitTabId = () => {
 export default function navigatorReducer(state = getInitTabId(), action) {
   switch (action.type){
     case NAVIGATOR.SWITCH_TAB:
-      console.log(action.currentTabId);
       return action.currentTabId;
     default:
       return state;

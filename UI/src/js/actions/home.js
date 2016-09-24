@@ -89,7 +89,7 @@ export const requestEventSelectionItems = ()=>{
 export const receiveEventSelectionItemsSuccess = (items)=>{
   "use strict";
   return {
-    type: EVENT_SELECTION,
+    type: EVENT_SELECTION.RECEIVE_EVENT_SELECTION_ITEMS_SUCCESS,
     items
   }
 };
@@ -97,7 +97,7 @@ export const receiveEventSelectionItemsSuccess = (items)=>{
 export const receiveEventSelectionItemsFailure = (err)=>{
   "use strict";
   return {
-    type: EVENT_SELECTION,
+    type: EVENT_SELECTION.RECEIVE_EVENT_SELECTION_ITEMS_FAILURE,
     err
   }
 };
@@ -133,7 +133,6 @@ const getLocationName = (point, dispatch) => {
         reject(DISPLAY_MESSAGES.GET_LOCATION_FAILURE);
       }
       else{
-        console.log(rs.addressComponents);
         let locationName = rs.addressComponents.street + rs.addressComponents.streetNumber;
         dispatch(receiveLocationSuccess(locationName));
         resolve(locationName);

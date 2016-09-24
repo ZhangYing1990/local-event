@@ -9,7 +9,21 @@ import './styles/index.less';
 export default class EventSelection extends Component{
 
   static defaultProps = {
-    showImage: false
+    showImage: false,
+    scrollContentId: 'content'
+  };
+
+  touchStartHandler (){
+    let touchInterval = setInterval(()=>{
+      const yOffset = document.getElementById(this.props.scrollContentId).scrollTop;
+      if(yOffset > this.previousPageYOffset){
+        this.updateViewport();
+        this.previousPageYOffset = yOffset;
+      }
+      else {
+        clearInterval(touchInterval);
+      }
+    },500);
   };
 
   constructor(props){
@@ -19,13 +33,17 @@ export default class EventSelection extends Component{
         top: 0,
         height: window.innerHeight
       }
-    }
+    };
+    this.previousPageYOffset = 0;
+
   }
 
   componentDidMount(){
     if(this.props.lazyLoading){
       window.addEventListener('scroll', this.updateViewport.bind(this), false);
       window.addEventListener('resize', this.updateViewport.bind(this), false);
+      window.addEventListener('touchmove', this.updateViewport.bind(this), false);
+      window.addEventListener('touchstart', this.touchStartHandler.bind(this), false)
     }
   }
 
@@ -33,6 +51,7 @@ export default class EventSelection extends Component{
     if(this.props.lazyLoading){
       window.removeEventListener('scroll', this.updateViewport);
       window.removeEventListener('resize', this.updateViewport);
+      window.addEventListener('touchmove', this.updateViewport.bind(this), false);
     }
   }
 
@@ -44,6 +63,8 @@ export default class EventSelection extends Component{
       }
     });
   }
+
+
 
   render(){
     let liNodes = this.props.items.map((item, index) =>{

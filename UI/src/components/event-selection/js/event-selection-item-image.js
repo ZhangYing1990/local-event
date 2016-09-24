@@ -12,8 +12,6 @@ export default class EventSelectionItemImage extends Component{
     // let el = this.getDOMNode();
     let el = ReactDOM.findDOMNode(this);
     let rect = el.getBoundingClientRect();
-    console.log(rect.top);
-    console.log(this.props.viewport.height);
     if(rect.top < this.props.viewport.height + 100){
       this.setState({
         showImage: true

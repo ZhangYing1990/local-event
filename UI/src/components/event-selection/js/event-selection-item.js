@@ -28,7 +28,6 @@ export default class EventSelectionItem extends Component{
 
 
   render(){
-    console.log('component render');
     let {item, lazyLoading} = this.props;
     return (
       <li>

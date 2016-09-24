@@ -5,7 +5,7 @@ import {EVENT_SELECTION} from '../actions/home';
 
 const initState = {
   isPending: true,
-  items: {},
+  items: [],
   err: null
 };
 export const eventSelectionReducer = (state=initState, action)=>{
